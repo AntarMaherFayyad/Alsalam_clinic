@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { Clock, Calendar, CheckCircle, XCircle, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { workingHours } from '@/lib/data'
+import { GetWorkingHours } from '@/lib/admin/settings'
 import { cn } from '@/lib/utils'
 
-export function WorkingHoursSection() {
+export async function WorkingHoursSection() {
+    const workingHours = await GetWorkingHours()
   return (
     <section className="py-24 bg-white relative overflow-hidden">
       {/* لمسة خلفية دائرية خفيفة */}
@@ -54,31 +55,31 @@ export function WorkingHoursSection() {
                   key={i}
                   className={cn(
                     "flex items-center justify-between px-6 py-4 transition-all duration-200 group/row",
-                    item.open ? "hover:bg-slate-50/80" : "bg-slate-50/40"
+                    item.is_open ? "hover:bg-slate-50/80" : "bg-slate-50/40"
                   )}
                 >
                   {/* اليوم وحالته */}
                   <div className="flex items-center gap-3 transition-transform duration-200 group-hover/row:translate-x-[-2px]">
-                    {item.open ? (
+                    {item.is_open? (
                       <CheckCircle className="w-4 h-4 text-emerald-500 stroke-[2.5] shrink-0" />
                     ) : (
                       <XCircle className="w-4 h-4 text-rose-400 stroke-[2.5] shrink-0" />
                     )}
                     <span className={cn(
                       "font-semibold text-sm",
-                      item.open ? "text-slate-700" : "text-slate-400 line-through decoration-slate-300"
+                      item.is_open ? "text-slate-700" : "text-slate-400 line-through decoration-slate-300"
                     )}>
                       {item.day}
                     </span>
                   </div>
                   
                   {/* التوقيت */}
-                  {item.open ? (
+                  {item.is_open ? (
                     <span 
                       className="text-xs font-bold text-[#0b6a6b] bg-[#0b6a6b]/5 px-3 py-1.5 rounded-lg border border-[#0b6a6b]/10 tracking-wide font-mono" 
                       dir="ltr"
                     >
-                      {item.from} - {item.to}
+                      {item.from_time} - {item.to_time}
                     </span>
                   ) : (
                     <span className="text-xs font-bold text-slate-400 bg-slate-100 px-3 py-1.5 rounded-lg border border-slate-200/60">

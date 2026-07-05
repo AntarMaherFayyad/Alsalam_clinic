@@ -1,10 +1,10 @@
 import axios from "axios";
 
-export const API_BASE_URL = "https://elmotahedasabagh.com/api";
+export const API_BASE_URL = "";
 
 export const TOKEN_KEY = "access_token";
 
-export const STORAGE_BASE_URL = "https://elmotahedasabagh.com/api/";
+export const STORAGE_BASE_URL = "";
 
 export function imageUrl(path?: string | null): string {
   if (!path) return "";

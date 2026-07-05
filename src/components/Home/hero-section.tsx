@@ -2,9 +2,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Calendar, MessageCircle, Star, Users, Award, Clock } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { doctor, siteSettings } from '@/lib/data'
+import { GetDoctor } from '@/lib/admin/doctor'
+import { GetSettings } from '@/lib/admin/settings'
 
-export function HeroSection() {
+export async  function HeroSection() {
+    const doctor = await GetDoctor()
+    const settings = await GetSettings()
     return (
         <section className="relative min-h-screen hero-gradient overflow-hidden flex items-center">
             {/* Background Pattern */}
@@ -24,11 +27,11 @@ export function HeroSection() {
                         </div>
 
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white text-balance leading-tight mb-6">
-                            {doctor.name}
+                            {doctor?.name}
                         </h1>
 
                         <p className="text-white/90 text-lg leading-relaxed mb-8 max-w-lg mx-auto lg:mx-0">
-                            {doctor.bio.substring(0, 180)}...
+                            {doctor?.bio?.substring(0, 180)}...
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
@@ -39,7 +42,7 @@ export function HeroSection() {
                                 </Button>
                             </Link>
                             <a
-                                href={`https://wa.me/${siteSettings.whatsapp}`}
+                                href={`https://wa.me/${settings?.whatsapp}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
@@ -59,7 +62,7 @@ export function HeroSection() {
                             <div className="text-center lg:text-right">
                                 <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
                                     <Clock className="w-5 h-5 text-white/80" />
-                                    <span className="text-3xl font-bold text-white">+{doctor.experience}</span>
+                                    <span className="text-3xl font-bold text-white">+{doctor?.experience}</span>
                                 </div>
                                 <p className="text-white/70 text-sm">سنوات الخبرة</p>
                             </div>
@@ -73,7 +76,7 @@ export function HeroSection() {
                             <div className="text-center lg:text-right">
                                 <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
                                     <Award className="w-5 h-5 text-white/80" />
-                                    <span className="text-3xl font-bold text-white">+{doctor.certifications.length}</span>
+                                    <span className="text-3xl font-bold text-white">+{doctor?.certifications.length}</span>
                                 </div>
                                 <p className="text-white/70 text-sm">شهادات</p>
                             </div>
@@ -86,8 +89,8 @@ export function HeroSection() {
                             <div className="absolute inset-0 rounded-full bg-white/10 blur-2xl" />
                             <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
                                 <Image
-                                    src={doctor.image}
-                                    alt={doctor.name}
+                                    src={doctor?.image || "/images/doctor.png"}
+                                    alt={doctor?.name || "صورة الطبيب"}
                                     fill
                                     className="object-cover"
                                     priority

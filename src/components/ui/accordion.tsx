@@ -12,7 +12,6 @@ function Accordion({ className, ...props }: AccordionPrimitive.Root.Props) {
     />
   )
 }
-
 function AccordionItem({ className, ...props }: AccordionPrimitive.Item.Props) {
   return (
     <AccordionPrimitive.Item

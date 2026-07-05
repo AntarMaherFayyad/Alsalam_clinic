@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { Phone, MessageCircle, Mail, MapPin, ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { siteSettings } from '@/lib/data'
 import { cn } from '@/lib/utils'
+import { GetSettings } from '@/lib/admin/settings'
 
-export function ContactCtaSection() {
+export async function ContactCtaSection() {
+  const settings = await GetSettings()
     return (
         <section className="py-24 bg-white relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -38,7 +39,7 @@ export function ContactCtaSection() {
                             </Link>
 
                             <a
-                                href={`https://wa.me/${siteSettings.whatsapp}`}
+                                href={`https://wa.me/${settings?.whatsapp}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="w-full sm:w-auto"
@@ -62,8 +63,8 @@ export function ContactCtaSection() {
                         {
                             icon: Phone,
                             title: 'قناة الهاتف المباشر',
-                            value: siteSettings.phone,
-                            href: `tel:${siteSettings.phone}`,
+                            value: settings?.phone,
+                            href: `tel:${settings?.phone}`,
                             color: 'bg-[#0b6a6b]/10 text-[#0b6a6b]',
                             label: 'اتصل بنا الآن',
                         },
@@ -71,22 +72,22 @@ export function ContactCtaSection() {
                             icon: MessageCircle,
                             title: 'المحادثة الفورية',
                             value: 'تواصل واتساب',
-                            href: `https://wa.me/${siteSettings.whatsapp}`,
+                            href: `https://wa.me/${settings?.whatsapp}`,
                             color: 'bg-emerald-50 text-emerald-600',
                             label: 'ابدأ الدردشة',
                         },
                         {
                             icon: Mail,
                             title: 'البريد الإلكتروني',
-                            value: siteSettings.email,
-                            href: `mailto:${siteSettings.email}`,
+                            value: settings?.email,
+                            href: `mailto:${settings?.email}`,
                             color: 'bg-sky-50 text-sky-600',
                             label: 'أرسل رسالة',
                         },
                         {
                             icon: MapPin,
                             title: 'موقع العيادة الطبية',
-                            value: siteSettings.address,
+                            value: settings?.address,
                             href: '/contact',
                             color: 'bg-amber-50 text-amber-600',
                             label: 'عرض على الخريطة',

@@ -133,7 +133,7 @@ export const doctor: Doctor = {
   education: [
     { degree: 'بكالوريوس الطب والجراحة', university: 'جامعة القاهرة', year: 2005 },
     { degree: 'ماجستير في الطب الباطني', university: 'جامعة عين شمس', year: 2010 },
-    { degree: 'زمالة الكلية الملكية للأطباء', university: 'جامعة لندن - المملكة المتحدة', year: 2013 },
+    { year: 2013, degree: 'زمالة الكلية الملكية للأطباء', university: 'جامعة لندن - المملكة المتحدة' },
   ],
   certifications: [
     'زمالة الكلية الملكية للأطباء - لندن',

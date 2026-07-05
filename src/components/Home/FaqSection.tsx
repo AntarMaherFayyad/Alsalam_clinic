@@ -26,7 +26,7 @@ export function FaqSection() {
         </div>
 
         {/* قائمة الأسئلة (Accordion) */}
-        <Accordion {...({ type: "single", collapsible: true } as any)} className="space-y-4">
+        <Accordion className="space-y-4">
           {sorted.map((faq) => (
             <AccordionItem
               key={faq.id}
