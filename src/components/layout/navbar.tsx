@@ -69,17 +69,17 @@ export function Navbar() {
             <a
               href={`tel:${siteSettings.phone}`}
               className={cn(
-                'flex items-center justify-center gap-2 text-sm font-medium transition-all px-4 h-11 rounded-xl border',
+                'hidden lg:flex items-center justify-center gap-2 text-sm font-medium transition-all px-4 h-11 rounded-xl border',
                 scrolled
                   ? 'bg-[#0b6a6b] text-white border-transparent shadow-sm hover:bg-[#095455]'
                   : 'bg-white text-[#0b6a6b] border-transparent shadow-sm hover:bg-slate-50'
               )}
             >
               <Phone className="w-4 h-4 shrink-0" />
-              <span className="hidden lg:inline font-semibold whitespace-nowrap">{siteSettings.phone}</span>
+              <span className="font-semibold whitespace-nowrap">{siteSettings.phone}</span>
             </a>
 
-            <Link href="/booking" className="block">
+            <Link href="/booking" className="hidden lg:block">
               <Button
                 className={cn(
                   "flex items-center justify-center gap-2 font-semibold transition-all px-4 h-11 rounded-xl border text-sm shadow-sm m-0",
@@ -107,10 +107,9 @@ export function Navbar() {
             >
               <Menu className="w-5 h-5 shrink-0" />
             </SheetTrigger>
-
             <SheetContent
               side="right"
-              className="w-80 p-0 border-l border-border bg-white flex flex-col h-full"
+              className="w-80 p-0 border-l border-border bg-white flex flex-col h-full [&>button]:hidden"
               dir="rtl"
             >
               <div className="p-6 pb-4 border-b border-slate-100 flex items-center justify-between bg-slate-50/50">
@@ -119,6 +118,7 @@ export function Navbar() {
                   <span className="text-xs font-medium text-slate-500 mt-0.5">{siteSettings.doctorName}</span>
                 </Link>
 
+                {/* هذا هو زر الإغلاق المخصص والمنظم الذي سيبقى ليتحكم فيه المستخدم */}
                 <SheetClose className="h-9 w-9 rounded-lg flex items-center justify-center border border-slate-200 text-slate-500 hover:bg-slate-100 hover:text-slate-900 transition-colors focus:outline-none">
                   <X className="w-4 h-4" />
                 </SheetClose>
