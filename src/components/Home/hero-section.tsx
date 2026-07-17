@@ -89,7 +89,7 @@ export async  function HeroSection() {
                             <div className="absolute inset-0 rounded-full bg-white/10 blur-2xl" />
                             <div className="relative w-full h-full rounded-full overflow-hidden border-4 border-white/30 shadow-2xl">
                                 <Image
-                                    src={doctor?.image || "/images/doctor.png"}
+                                    src="/images/doctor.png"
                                     alt={doctor?.name || "صورة الطبيب"}
                                     fill
                                     className="object-cover"
